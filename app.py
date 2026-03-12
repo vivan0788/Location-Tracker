@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-import os
+import os  # Ise yahan sabse upar rakhein
 
 app = Flask(__name__)
 
@@ -22,6 +22,5 @@ def save_data():
     return jsonify({"status": "ok"})
 
 if __name__ == "__main__":
-    # Dhyan dein: ye niche ki dono lines ke shuru mein 4 spaces hain
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
