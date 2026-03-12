@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import os
 
 app = Flask(__name__)
 
@@ -15,13 +16,12 @@ def save_data():
     log = f"Latitude: {lat}, Longitude: {lon}\n"
     print(f"User Location Found: {log}")
     
-    # Ek file mein save kar lega
     with open("locations.txt", "a") as f:
         f.write(log)
-        
+    
     return jsonify({"status": "ok"})
 
 if __name__ == "__main__":
-    import os
+    # Dhyan dein: ye niche ki dono lines ke shuru mein 4 spaces hain
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
